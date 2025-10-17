@@ -26,18 +26,18 @@ class MainActivity : AppCompatActivity() {
 
 
         acc1.deposit(1000.0)
-        out.append("Savings: Deposited 1000.0\n")
+        out.append("acc1: Deposited 1000.0\n")
 
 
-        out.append("Attempting savings.withdraw(300)\n")
+        out.append("Attempting acc1.withdraw(300)\n")
         acc1.withdraw(300.0)
-        out.append("Attempting savings.withdraw(600)\n")
+        out.append("Attempting acc1.withdraw(600)\n")
         acc1.withdraw(600.0)
 
         acc2.deposit(1000.0)
-        out.append("VIP: Deposited 1000.0\n\n")
+        out.append("acc2: Deposited 1000.0\n\n")
 
-        out.append("\nTesting VIP withdrawal: vip.withdraw(50)... fee should apply\n")
+        out.append("\nTesting acc2 withdrawal: acc2.withdraw(50)... fee should apply\n")
         acc2.withdraw(50.0)
 
 
@@ -53,8 +53,8 @@ class MainActivity : AppCompatActivity() {
         acc1.printInfo()
 
         out.append("\nFinal account states:\n")
-        out.append("Savings Account: ${acc1.accountNumber} | Owner: ${acc1.ownerName} | Balance: ${"%.2f".format(acc1.getBalance())}\n")
-        out.append("VIP Account: ${acc2.accountNumber} | Owner: ${acc2.ownerName} | Balance: ${"%.2f".format(acc2.getBalance())}\n")
+        out.append("acc1 Account: ${acc1.accountNumber} | Owner: ${acc1.ownerName} | Balance: ${"%.2f".format(acc1.getBalance())}\n")
+        out.append("acc2 Account: ${acc2.accountNumber} | Owner: ${acc2.ownerName} | Balance: ${"%.2f".format(acc2.getBalance())}\n")
 
 
         tvOutput.text = out.toString()
