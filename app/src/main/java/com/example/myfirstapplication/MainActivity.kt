@@ -21,30 +21,40 @@ class MainActivity : AppCompatActivity() {
         val out = StringBuilder()
 
 
-        val savings = SavingsAccount("S101", "George G.")
-        val vip = VIPAccount("V202", "Mariam A.")
+        val acc1 = SavingsAccount("S101", "George G.")
+        val acc2 = VIPAccount("V202", "Mariam A.")
 
 
-        savings.deposit(1000.0)
+        acc1.deposit(1000.0)
         out.append("Savings: Deposited 1000.0\n")
-        vip.deposit(1000.0)
+
+
+        out.append("Attempting savings.withdraw(300)\n")
+        acc1.withdraw(300.0)
+        out.append("Attempting savings.withdraw(600)\n")
+        acc1.withdraw(600.0)
+
+        acc2.deposit(1000.0)
         out.append("VIP: Deposited 1000.0\n\n")
 
+        out.append("\nTesting VIP withdrawal: vip.withdraw(50)... fee should apply\n")
+        acc2.withdraw(50.0)
 
-        out.append("Attempting savings.withdraw(600.0)\n")
-        savings.withdraw(600.0)
-        out.append("Attempting savings.withdraw(400.0)\n")
-        savings.withdraw(400.0)
 
-        out.append("\nTesting VIP withdrawal: vip.withdraw(200.0)... fee should apply\n")
-        vip.withdraw(200.0)
+
+        val accounts: List<Account> = listOf(acc1,acc2)
+
+        for (account in accounts){
+            account.deposit(50.0)
+            account.printInfo()
+        }
+
+        acc2.printInfo()
+        acc1.printInfo()
 
         out.append("\nFinal account states:\n")
-        out.append("Savings Account: ${savings.accountNumber} | Owner: ${savings.ownerName} | Balance: ${"%.2f".format(savings.getBalance())}\n")
-        out.append("VIP Account: ${vip.accountNumber} | Owner: ${vip.ownerName} | Balance: ${"%.2f".format(vip.getBalance())}\n")
-
-        savings.printInfo()
-        vip.printInfo()
+        out.append("Savings Account: ${acc1.accountNumber} | Owner: ${acc1.ownerName} | Balance: ${"%.2f".format(acc1.getBalance())}\n")
+        out.append("VIP Account: ${acc2.accountNumber} | Owner: ${acc2.ownerName} | Balance: ${"%.2f".format(acc2.getBalance())}\n")
 
 
         tvOutput.text = out.toString()
